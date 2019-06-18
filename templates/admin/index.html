@@ -1,0 +1,44 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<!--content goes here-->
+<div class="container home-div">
+  <div class="pan-wrap-one">
+    <div class="one">
+      <div class="number">{{ categoryies }}</div>
+      <div class="txt"><span>Category</span><br /><br /><a href="/admin/category/list/">View All Categories</a></div>
+      <br clear="all" />
+    </div>
+  </div>
+  <div class="pan-wrap-one">
+    <div class="two">
+      <div class="number">{{ posts }}</div>
+      <div class="txt"><span>Articles</span><br /><br /><a href="/admin/article/list/">View All articles</a></div>
+      <br clear="all" />
+    </div>
+  </div>
+  <div class="pan-wrap-one">
+    <div class="three">
+      <div class="number">{{ events }}</div>
+      <div class="txt"><span>Events</span><br /><br /><a href="/admin/event/list/">View All Events</a></div>
+      <br clear="all" />
+    </div>
+  </div>
+  <div class="pan-wrap-one">
+    <div class="four">
+      <div class="number">{{ menus }}</div>
+      <div class="txt"><span>menus</span><br /><br /><a href="/admin/menu/list/">View All Menus</a></div>
+      <br clear="all" />
+    </div>
+  </div>
+  <div class="pan-wrap-one">
+    <div class="five">
+      <div class="number">{{ pages }}</div>
+      <div class="txt"><span>Pages</span><br /><br /><a href="/admin/page/list/">View All Pages</a></div>
+      <br clear="all" />
+    </div>
+  </div>
+  <br clear="all" />
+</div>
+<!--content goes here-->
+<!--content goes here-->
+{% endblock %}

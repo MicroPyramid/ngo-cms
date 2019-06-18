@@ -1,0 +1,81 @@
+{% extends "admin/base.html"%}
+{% block content %}
+<!--vertical bar ends above-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<!--content goes here-->
+<div class="container wid-cont">
+  <!--container starts above-->
+  <div class="cover-panel">
+    <!--cover panel starts above-->
+    <h2>Edit Event</h2>
+    <form name="edit event" id="event_edit_form" enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+      <div class="section">
+        <div class="labl"><label id="id_name">Event Name</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><input type="text" name="name" id="event_edit_name1" value="{{event.name}}" />
+          <span class="error" id="name" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label id="id_short_desc">Short Description</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><textarea name="short_desc" rows="7">{{event.short_desc}}</textarea>
+          <span class="error" id="short_desc" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label>Content</label></div>
+        <input type="hidden" id="description" name="description">
+        <div class="txt-box-div"><div id="editor-container">{{event.description|safe}}</div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label>Event Location</label></div>
+        <div class="txt-box-div"><input type="text" name="location" value="{{event.location}}" />
+          <span class="error" id="location" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label>Contact Details</label></div>
+        <div class="txt-box-div"><input type="text" name="contact_details" value="{{event.contact_details}}" />
+          <span class="error" id="contact_details" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label id="id_image">Image</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><input type="file" name="image" />
+          <span class="error" id="image" style='display:none;'></span>
+          <p>{{event.image}}</p>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label>Start Date<br /> <span style="font-size:11px;">(yyyy-mm-dd)</span></label></div>
+        <div class="txt-box-div"><input type="text" name="start_date" id="event_edit_datepicker_start" />
+          <span class="error" id="start_date" style='display:none;'></span>
+          <span class="error" id="date_err" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label>End Date<br /> <span style="font-size:11px;">(yyyy-mm-dd)</span></label></div>
+        <div class="txt-box-div"><input type="text" name="end_date" value="{% if event.start_date %}{{event.start_date | date:'Y-m-d'}}{% endif %}" id="event_edit_datepicker_end" />
+          <span class="error" id="end_date" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label id="id_slug">Clean Url</span></label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><input type="text" name="slug" id="event_edit_slug1" class="event_edit_slug1" value={{event.slug}} />
+          <span class="error" id="slug" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="btn-rgt">
+        <button type="submit" id="event_edit_save" class="sav-btn"><i class="fa fa-floppy-o pad-rt"></i>Save</button>
+        <button id="event_edit_cancel" class="sav-btn">Cancel</button>
+      </div>
+    </form>
+    <!--cover panel ends below-->
+  </div>
+  <!--container ends below-->
+</div>
+<!--content goes here-->
+{% endblock %}

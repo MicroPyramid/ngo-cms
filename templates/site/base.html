@@ -1,0 +1,229 @@
+{% load img %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chaitanya Jyothi Welfare Society</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{% static 'site/images/cjws_fev.png' %}" />
+    <link rel="apple-touch-icon" href="/startic/apple-touch-icon.png" />
+    <!-- Mobile Specific Meta -->
+    <meta name="google-site-verification" content="MFw7FCekkEzntpuCy7xqvAqf7YdVnRaSyLPYXJjvor0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Muli:200,200i,300,300i,400,600,700,800,900" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'site/css/style.css'%}" />
+    <link rel="stylesheet" type="text/css" media="all" href="{% static '/site/css/flexslider.css' %}" />
+    <link rel="stylesheet" type="text/css" media="all" href="{% static '/site/css/keyframes.css' %}" />
+    <link rel="stylesheet" type="text/css" media="all" href="{% static '/site/css/grid.css' %}" />
+    <link rel="stylesheet" type="text/css" media="all" href="{% static '/site/css/meanmenu.css' %}" />
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'site/css/sm-core-css.css' %}" />
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'site/css/sm-blue.css' %}" />
+    <!-- <script type='text/javascript' src="{% static 'site/js/jquery.min.js' %}"></script> -->
+    <!-- <script type='text/javascript' src='//html5shim.googlecode.com/svn/trunk/html5.js'></script>-->
+  <!--   <script src="{% static 'site/js/base.js' %}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.smartmenus/1.1.0/jquery.smartmenus.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+    <!-- <script src="{% static 'site/js/jquery.meanmenu.js' %}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+    {% block extra-css %}
+    {% endblock %}
+  </head>
+  <body class="home blog two-column right-sidebar" data-twttr-rendered="true">
+    <div id="page" class="container">
+      <header id="branding" class="site-header" role="banner">
+        <div id="sticky_navigation" class="header">
+          <div class="container no-padding">
+            <hgroup class="fleft grid_8 logo_group" id="logo-wid">
+              <h1 id="site-title"><a href="/" class="cjws_society" title="Chaitanya Jyothi Welfare Society" rel="home"><img class="logo_style" src="{% static 'site/images/cjws_logo.png' %}" height="100px" width="auto" /></a><a href="/" title="Chaitanya Jyothi Welfare Society" id="logo" rel="home">Chaitanya Jyothi <span>Welfare Society</span></a></h1>
+            </hgroup>
+            <!-- .site-navigation .main-navigation -->
+            <button id="tog-btn"><i class="fa fa-bars"></i></button>
+            <div class ="">
+              <ul id="main-menu" class="sm sm-blue">
+                {% for menu in menu_list|dictsort:"lvl" %}
+                <li>
+                  <a href="/{{ menu.slug }}">{{ menu.name }}</a>
+                  {% if menu.menu_set.all|menu_count %}
+                  <ul>
+                    {% for sub in menu.menu_set.all|dictsort:"lvl" %}
+                    {% if sub.is_active %}
+                    <li>
+                      <a href="/{{ sub.slug }}/">{{ sub.name }}</a>
+                      {% if sub.menu_set.all|menu_count %}
+                      <ul class="mar-top">
+                        {% for sub2 in sub.menu_set.all|dictsort:"lvl" %}
+                        {% if sub2.is_active %}
+                        <li><a href="/{{ sub2.slug }}">{{sub2.name}}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="grid_16 mob-nav"></div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </header>
+    </div>
+  </div>
+      <!-- #masthead .site-header -->
+      {% block content %}
+      {% endblock %}
+      <!-- Footer -->
+      <footer id="colophon" class="site-footer" role="contentinfo">
+        <div id="tertiary" class="sidebar-container" role="complementary">
+          <div class="container">
+            <div class="row">
+            <!-- First Widget Area -->
+            <div class="col-md-4">
+              <aside id="meta-0" class="widget widget_adress">
+                <h3>Contact us</h3>
+                <address class="vcard">
+          <p class="org vcard"><a class="url fn org" href="#">Chaitanya Jyothi Welfare Society</a></p>
+                  <p class="adr">
+                    <b>Street :</b> -<span class="street-address">26-3-215, Thyagaraya Nagar 4th street,</span><br>
+                    <span class="region"> Vedayapalem, Nellore - 524004</span>
+                    <span class="postal-code"> Andhra Pradesh,</span>
+                    <span class="country-name"> India,</span>
+                  </p>
+                  <b>Phone :</b><span class="tel"> +91 (861)2344063</span><br />
+                  <b>E-mail :</b><span class="email"> hello@cjws.in</span><br />
+                  <b>Website :</b><span class="url"> www.cjws.in</span><br />
+                </address>
+              </aside>
+            </div>
+            <!-- Second Widget Area -->
+            <div class="col-md-3">
+              <aside id="meta-1" class="widget widget_meta">
+                <h3>Latest Events</h3>
+                {% for event in footer_events %}
+                <ul>
+                  <li><a href="{{ event.get_absolute_url }}" title="">{{ event.name |title }}</a></li>
+                </ul>
+                {% endfor %}
+              </aside>
+            </div>
+            <!-- Third Widget Area -->
+            <div class="col-md-3">
+              <aside id="meta-2" class="widget widget_meta">
+                <h3>Get involved</h3>
+                <ul>
+                  {% for menu in menu_list %}
+                  <li class="menu-item "><a href="/{{ menu.slug }}">{{ menu.name |title}}</a></li>
+                  {% endfor %}
+                </ul>
+              </aside>
+            </div>
+            <div class="col-md-2">
+              <aside id="meta-2" class="widget widget_meta footer-social">
+                <h3>Get connected</h3>
+                <ul class="list-inline ">
+                  <li class="facebook"><a href="https://www.facebook.com/Chaitanya-Jyothi-Welfare-Society-505958186205070/"><i class="fab fa-facebook-f"></i></a></li>
+                  <li class="googleplus"><a href="https://plus.google.com/110015354998420632338/about"><i class="fab fa-google-plus"></i></a></li>
+                  <li class="rss"><a href="/rss.xml"><i class="fa fa-rss"></i></i></a>
+                  </li>
+                  <li class="youtube"><a href="https://www.youtube.com/channel/UCjDr49bvrxS6t3q7hygtipQ" target="_blank"><i class="fab fa-youtube"></i></a>
+                  </li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <!-- Site Info -->
+        <div class="site-info">
+          <div class="container">
+            <!-- CopyRight -->
+            <div class="row">
+            <div class="col-md-4 text-left">
+              <p class="copy">Copyright ©  2018.  All Rights reserved.  </p>
+            </div>
+            <div class="col-md-4 text-center">
+              <p class="copy"><a href="https://github.com/MicroPyramid/ngo-cms">Opensource NGO CMS</a></p>
+            </div>
+            <!-- Design By -->
+            <div class="col-md-4 text-right">
+              <p class="designby">Made With Love by <a href="http://micropyramid.com">Micropyramid</a></p>
+            </div>
+          </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <!-- .site-info -->
+      </footer>
+      <!-- #colophon .site-footer -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-11720509-9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-11720509-9');
+    </script>
+ <!--    <script type="text/javascript">
+      $(function() {
+        $('#main-menu').smartmenus({
+          subMenusSubOffsetX: 1,
+          subMenusSubOffsetY: -8
+        });
+      });
+    </script> -->
+    <style type="text/css">
+      #main-menu {
+      position:relative;
+      z-index:9999;
+      width:auto;
+      float: right;
+      }
+      #main-menu ul {
+      width:12em; /* fixed width only please - you can use the "subMenusMinWidth"/"subMenusMaxWidth" script options to override this if you like */
+      }
+    </style>
+    <script>
+      $("#tog-btn").click(function(e) {
+          $(".nav").slideToggle();
+      });
+    </script>
+     <script type="text/javascript">
+    $(function() {
+    var selectedClass = "";
+    $(".filter").click(function(){ 
+        selectedClass = $(this).attr("data-rel"); 
+        $("#gallery").fadeTo(100, 0.1);
+        $("#gallery div").not("."+selectedClass).fadeOut().removeClass('animation');
+        setTimeout(function() {
+            $("."+selectedClass).fadeIn().addClass('animation');
+            $("#gallery").fadeTo(300, 1);
+        }, 300); 
+    });
+});
+  </script>
+  <script>
+$(function(){
+  $(window).scroll(function(){
+  $("#sticky_navigation").addClass("sticky")
+});
+});
+</script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>   
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

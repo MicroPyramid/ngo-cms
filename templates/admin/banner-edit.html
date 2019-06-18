@@ -1,0 +1,49 @@
+{% extends "admin/base.html"%}
+{% block content %}
+<!--vertical bar ends above-->
+<!--content goes here-->
+<div class="container wid-cont">
+  <!--container starts above-->
+  <div class="cover-panel">
+    <!--cover panel starts above-->
+    <h2>Edit Banner</h2>
+    <form name="create_banner" id="banner_edit_form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="section">
+        <div class="labl">
+          <label>Title</label><span style="color:red;">*</span>
+        </div>
+        <div class="txt-box-div">
+          <input type="text" name="title" id="banner_edit_title1" value="{{banner.title}}" />
+          <span class="error" id="title" style='display:none; color:red'></span>
+        </div>
+      </div>
+      <span class="error" id="image" style='display:none;'></span>
+      <div class="section">
+        <div class="labl">
+          <label>Image</label><span style="color:red;">*</span>
+        </div>
+        <div class="txt-box-div">
+          <input type="file" name="image" />
+          <img src="{{banner.image.url}}" style="width: 40px;height: 40px;">
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl">
+          <label> Short Description</label>
+        </div>
+        <div class="txt-box-div">
+          <textarea name="short_desc" rows="7">{{ banner.short_desc }}</textarea>
+        </div>
+      </div>
+      <div class="btn-rgt">
+        <button type="submit" id="banner_edit_title1" class="sav-btn"><i class="fa fa-floppy-o pad-rt"></i>Save</button>
+        <button id="banner_edit_cancel" class="sav-btn">Cancel</button>
+      </div>
+    </form>
+    <!--cover panel ends below-->
+  </div>
+  <!--container ends below-->
+</div>
+<!--content goes here-->
+{% endblock content %}

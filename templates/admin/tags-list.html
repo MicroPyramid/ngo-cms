@@ -1,0 +1,49 @@
+{% extends "admin/base.html"%}
+{% block content %}
+<!--vertical bar ends above-->
+<!--content goes here-->
+<div class="container wid-cont">
+  <!--container starts above-->
+  <div class="cover-panel">
+    <!--cover panel starts above-->
+    <h2>List of Tags</h2>
+    <form style="width:100%;">
+      <table>
+        <thead>
+          <tr>
+            <th>S.No.</th>
+            <th>Name</th>
+            <th>slug</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for tag in tags_list %}
+          <tr>
+            <td style="text-align:center;">{{forloop.counter}}</td>
+            <td style="text-align:center;"">{{tag.name}}</td>
+            <td style="text-align:center;">{{tag.slug}}</td>
+            <td>
+              <a href="/admin/tag/delete/{{tag.id}}/" class="remove_tag" title="Delete"><i class="fa fa-trash-o trash-icon"></i></a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </form>
+    <!--cover panel ends below-->
+  </div>
+  <!--container ends below-->
+</div>
+<!--content goes here-->
+{% endblock %}
+{% block extra_js %}
+<script type="text/javascript">
+  $('.remove_article').click(function(e) {
+    var result = confirm("Are You Sure You Want to delete?");
+    if (result === false) {
+      e.preventDefault();
+    }
+  });
+</script>
+{% endblock %}

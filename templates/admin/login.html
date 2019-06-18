@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "//www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>login</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link href='//fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'admin/css/cjws_style.css' %}" />
+  </head>
+  <body class="log-body">
+    <div class="wrapper">
+      <h3>Admin-Login</h3>
+      <div class="form-box">
+        <form method="post" id="form_login">
+          {% csrf_token %}
+          <p id="message"></p>
+          <span class="error" style="margin: 10px 10px 10px 10px; display: block;"></span>
+          <div class="one-field">
+            <label class="labl"><i class="fa fa-user pad-rt"></i>Email</label>
+            <input type="text" class="txt-box" name="email" />
+          </div>
+          <div class="one-field">
+            <label class="labl"><i class="fa fa-unlock-alt pad-rt"></i>Password</label>
+            <input type="password" class="txt-box" name="password" />
+          </div>
+          <span class="error" id="message" style='display:none;'></span>
+          <div class="btn-rgt">
+            <button type="submit" class="submit-btn">Submit<i class="fa fa-angle-double-right padd-lt"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+<!--<script src="/static/admin/js/cjws_my_script.js"></script>-->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#form_login").submit(function(e) {
+      e.preventDefault();
+      $.post("/admin/", $("#form_login").serialize(), function(data) {
+        if (data.error == false) {
+          window.location = "/admin/";
+        } else {
+          $("#message").html(data.message);
+        }
+      }, "json");
+    });
+  });
+</script>
+  </body>
+</html>

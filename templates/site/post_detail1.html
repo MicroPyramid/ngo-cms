@@ -1,0 +1,86 @@
+{% extends "site/base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% load img %}
+<head>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static 'jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js' %}"></script>
+  <script type="text/javascript" src="{% static 'jquery.fancybox-1.3.4/fancybox/jquery.mousewheel-3.0.4.pack.js' %}"></script>
+  <script type="text/javascript" src="{% static 'jquery.fancybox-1.3.4/fancybox/jquery.easing-1.3.pack.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css' %}" type="text/css" media="screen" />
+</head>
+<!-- #masthead .site-header -->
+<div id="main" class="site-main container_16">
+  <div class="inner">
+    <div id="primary" class="grid_11 suffix_1">
+      <article class="single">
+        <div class="entry-content">
+          <h3>{{ post.title | title }}</h3>
+          <br>
+          <figure>
+            {% if post.image %}
+            <img width="848" height="352" src="/media/{{ post.image }}" class="wp-post-image" alt="Image">
+            {% endif %}
+            {% if post.created_on %}
+            <div class="mask-open radius">
+              <div class="square-info radius">
+                <div class="square-info-margins">
+                  <div class="meta fleft">
+                    <p class="sponsors"><i class=""></i> {{ post.created_on }}</p>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </figure>
+          <div class="long-description">
+            <br />
+            <p>
+              {% if post.description %}
+              {{ post.description| safe}}
+              {% endif %}
+            </p>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </article>
+      <h3>Our Gallery</h3>
+      <div class="container-img">
+        {% for img in post.photos.all %}
+        <ul>
+          <li><a class="fancybox" rel="gallery1" href="/media/{{ img.image }}" title="{{ img.image.name |imgname }}"><img src="/media/{{ img.image }}" alt="" height="150" width="200" hspace="10" /></a></li>
+        </ul>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="secondary" class="grid_4 widget-area" role="complementary">
+      <aside id="meta-2" class="widget widget_meta">
+        <h3>Categories</h3>
+        <ul>
+          {% for cat in category_list %}
+          <li><a href="/news/category/{{ cat.slug }}" title="{{cat.name}}">{{ cat.name |title }}</a></li>
+          {% endfor %}
+        </ul>
+        <br>
+        <h3>Archives</h3>
+        <ul>
+          {% for month in archives %}
+          <li><a href="/news/archives/{{month.year}}/{{month.month}}/" title="">{{ month |date:'M Y' }}</a></li>
+          {% endfor %}
+        </ul>
+      </aside>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+  jQuery(document).ready(function() {
+    $(".fancybox").fancybox({
+      openEffect  : 'none',
+      closeEffect : 'none',
+    });
+  });
+</script>
+{% endblock %}

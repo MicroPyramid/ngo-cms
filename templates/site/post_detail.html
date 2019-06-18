@@ -1,0 +1,83 @@
+{% extends "site/base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% load img %}
+{% load thumbnail %}
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+</head>
+<!-- #masthead .site-header -->
+<!-- #masthead .site-header -->
+<div id="main" class="site-main container">
+  <div class="innerevent_detail ">
+    <div id="primary" class="col-md-12">
+      <article class="single">
+        <div class="entry-content">
+          <h3>{{ post.title | title }}</h3>
+          <div class="row">
+            <div class="col-md-8 m-auto">
+                 <figure>
+            {% if post.image %}
+            <img src="{{ post.image.url }}" class="wp-post-image" alt="Image">
+            {% endif %}
+            {% if post.created_on %}
+            <div class="mask-open radius">
+              <div class="square-info radius">
+                <div class="square-info-margins">
+                  <div class="meta">
+                    <p class="sponsors"><i class=""></i> {{ post.created_on }}</p>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </figure>
+            </div>
+          </div>
+       
+          <div class="long-description">
+            <p>
+              {% if post.description %}
+              {{ post.description| safe}}
+              {% endif %}
+            </p>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </article>
+      <h3>Our Gallery</h3>
+      <div class="container-img">
+        {% for img in post.photos.all %}
+        <ul>
+          <li style=""><a data-fancybox="gallery" href="{{ img.image.url }}" title="{{ img.image.name |imgname }}"><img src="{{ img.image.url }}" alt="" /></a></li>
+        </ul>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="secondary" class="row widget-area" role="complementary">
+      <div id="meta-2" class="col-md-6 widget widget_meta">
+        <h3>Categories</h3>
+        <ul>
+          <li>
+              {% for cat in category_list %}
+            <a href="/news/category/{{ cat.slug }}" title="{{cat.name}}">{{ cat.name |title }}</a>
+              {% endfor %}
+          </li>
+        
+        </ul>
+      </div>
+     <div id="meta-2" class="col-md-6 widget widget_meta">
+        <h3>Archives</h3>
+        <ul>
+          {% for month in archives %}
+          <li><a href="/news/archives/{{month.year}}/{{month.month}}/" title="">{{ month |date:'M Y' }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+{% endblock %}

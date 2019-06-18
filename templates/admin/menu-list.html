@@ -1,0 +1,99 @@
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!--vertical bar ends above-->
+<!--content goes here-->
+<div class="container wid-cont">
+  <!--container starts above-->
+  <div class="cover-panel">
+    <!--cover panel starts above-->
+    <h2>List of Menus <span><a href="/admin/menu/add/"><button class="new-btn"><i class="fa fa-plus pad-rt"></i>Add New Menu</button></a></span></h2>
+    <form style="width:100%;">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Slug</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in menu_list|dictsort:"lvl" %}
+          <tr class="main-menu">
+            <td>
+              <button class="tog-d" id="menu-{{forloop.counter}}"><i class="fa fa-chevron-down" ></i></button>
+              <button class="tog-u" id="menu-up-{{forloop.parent.counter}}"><i class="fa fa-chevron-up"></i></button>
+            </td>
+            <td>
+              {{m.name}}
+            </td>
+            <td>{{m.slug}}</td>
+            <td>
+              <a href="/admin/menu/lvl-up/{{m.id}}/"><i class="fa fa-arrow-circle-up move-up-icon"></i></a>
+              <a href="/admin/menu/lvl-down/{{m.id}}/"><i class="fa fa-arrow-circle-down move-down-icon"></i></a>
+              <a href="/admin/menu/edit/{{m.id}}/"><i class="fa fa-pencil-square-o edit-icon"></i></a>
+              <a href="/admin/menu/delete/{{m.id}}/" class="remove_menu"><i class="fa fa-trash-o trash-icon"></i></a>
+              {% if m.is_active %}
+              <a href="/admin/menu/change_state/{{m.id}}/" title="Hide"><i class="fa fa-eye-slash hide-icon"></i></a>
+              {% else %}
+              <a href="/admin/menu/change_state/{{m.id}}/" title="show"><i class="fa fa-eye view-icon"></i></a>
+              {% endif %}
+            </td>
+          </tr>
+          {% for s in m.menu_set.all|dictsort:"lvl" %}
+          <tr class="sub-menu">
+            <td class="text-align-rgt">
+              <button class="tog-d" id="menu-{{forloop.counter}}"><i class="fa fa-chevron-down" ></i></button>
+              <button class="tog-u" id="menu-up-{{forloop.parent.counter}}"><i class="fa fa-chevron-up"></i></button>
+            </td>
+            <td>{{s.name}}</td>
+            <td>{{s.slug}}</td>
+            <td>
+              <a href="/admin/menu/lvl-up/{{s.id}}/"><i class="fa fa-arrow-circle-up move-up-icon"></i></a>
+              <a href="/admin/menu/lvl-down/{{s.id}}/"><i class="fa fa-arrow-circle-down move-down-icon"></i></a>
+              <a href="/admin/menu/edit/{{s.id}}/" title="Edit"><i class="fa fa-pencil-square-o edit-icon"></i></a>
+              <a href="/admin/menu/delete/{{s.id}}/" class="remove_menu" title="Delete"><i class="fa fa-trash-o trash-icon"></i></a>
+              {% if s.is_active %}
+              <a href="/admin/menu/change_state/{{s.id}}/" title="Hide"><i class="fa fa-eye-slash hide-icon"></i></a>
+              {% else %}
+              <a href="/admin/menu/change_state/{{s.id}}/" title="show"><i class="fa fa-eye view-icon"></i></a>
+              {% endif %}
+            </td>
+          </tr>
+          {% for ss in s.menu_set.all|dictsort:"lvl" %}
+          <tr class="sub-sub-menu">
+            <td>
+            </td>
+            <td>{{ss.name}}</td>
+            <td>{{ss.slug}}</td>
+            <td>
+              <a href="/admin/menu/lvl-up/{{ss.id}}/"><i class="fa fa-arrow-circle-up move-up-icon"></i></a>
+              <a href="/admin/menu/lvl-down/{{ss.id}}/"><i class="fa fa-arrow-circle-down move-down-icon"></i></a>
+              <a href="/admin/menu/edit/{{ss.id}}/" title="Edit"><i class="fa fa-pencil-square-o edit-icon"></i></a>
+              <a href="/admin/menu/delete/{{ss.id}}/" title="Delete"><i class="fa fa-trash-o trash-icon"></i></a>
+              {% if ss.is_active %}
+              <a href="/admin/menu/change_state/{{ss.id}}/" title="Hide"><i class="fa fa-eye-slash hide-icon"></i></a>
+              {% else %}
+              <a href="/admin/menu/change_state/{{ss.id}}/" title="show"><i class="fa fa-eye view-icon"></i></a>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+          {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </form>
+    <!--cover panel ends below-->
+  </div>
+  <!--container ends below-->
+</div>
+<!--content goes here-->
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'admin/js/cjws_my_script.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<head>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//malsup.github.com/jquery.form.js"></script>
+</head>
+<!--vertical bar ends above-->
+<!--content goes here-->
+<div class="container wid-cont">
+  <!--container starts above-->
+  <div class="cover-panel">
+    <!--cover panel starts above-->
+    <h2>Add Page</h2>
+    <form name="create_page" id="page_add_form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="section">
+        <div class="labl"><label id="id_title">Title</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><input type="text" name="title" id="page_add_title1" />
+          <span class="error" id="title" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label id="id_content">Content</label><span style="color:red;">*</span></div>
+        <input type="hidden" id="description" name="content">
+        <div class="txt-box-div">
+          <div id="editor-container"></div>
+          <span class="error" id="content" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label id="id_slug">Clean Url</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><input type="text" name="slug" id="page_add_slug1" class="page_add_slug1" />
+          <span class="error" id="slug" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="input_fields_wrap">
+          <div class="labl"><button class="page_add_field_button" style="color:#fff; background:#ff6c60; border:1px solid #ff6c60; padding:5px;"><i class="fa fa-plus pad-rt"></i>Add More Images</button></div>
+          <div class="txt-box-div" style="min-height:25px"><input type="file" name="photos"></div>
+        </div>
+      </div>
+      <div class="btn-rgt">
+        <button type="submit" id="page_add_save" class="sav-btn"><i class="fa fa-floppy-o pad-rt"></i>Save</button>
+        <button id="page_add_cancel" class="sav-btn">Cancel</button>
+      </div>
+    </form>
+    <div class="row marl progress-row">
+      <div class="progress">
+        <div class="bar">&nbsp;</div>
+        <div class="percent">0%</div>
+      </div>
+    </div>
+    <!--cover panel ends below-->
+  </div>
+  <!--container ends below-->
+</div>
+{% endblock %}

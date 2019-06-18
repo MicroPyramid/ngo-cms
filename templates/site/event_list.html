@@ -1,0 +1,86 @@
+{% extends "site/base.html" %}
+{% block content %}
+<div id="main" class="event_list container">
+  <div class="inner row">
+    <div id="primary" class="col-md-8 suffix_1">
+      <div class="widget-title">
+      <h3>Events</h3>
+    </div>
+      {% if event_list %}
+      {% for event in event_list %}
+      <!-- First article -->
+      <article class="list_event">
+        <div class="event">
+          <figure>
+            {% if event.image %}
+            <a title="{{ event.name }}" href="{{ event.get_absolute_url }}" class="url summary">
+            <img src="{{ event.image.url }}" class="wp-post-image" alt="Image alt">
+            </a>
+            {% endif %}
+          </figure>
+             <h1 class="entry-header">
+            <a href="{{ event.get_absolute_url }}">{{ event.name| title }}</a>
+          </h1>
+        </div>
+       
+          <div class="short-description description">
+            {% if event.short_desc %}
+            <p>{{ event.short_desc | truncatechars:265 }}</p>
+            {% endif %}
+          </div>
+          <div class="entry-meta">
+            <time class="dtstart date" datetime="2013-04-25T19:02:42+00:00"><i class="far fa-calendar-check"></i> {% if event.start_date %}{{ event.start_date }} {% endif %}</time> <a class="buttons fright" href="{{ event.get_absolute_url }}" title="{{ event.name }}">Read more</a>
+          </div>
+          <div class="clear"></div>
+        <div class="clear"></div>
+      </article>
+      {% endfor %}
+      {% else %}
+      no Events..
+      {% endif %}
+      <!-- pagination -->
+      <ul class="pagination">
+        <li><a class="radius" href="/events/?page=1">First</a></li>
+        {% for s in pages %}
+        <li {% ifequal s current_page %} class="active" {% endifequal %} ><a href="/events/?page={{s}}">{{s}}</a></li>
+        {% endfor %}
+        <li><a href="/events/?page={{last_page}}">Last</a></li>
+      </ul>
+      <!-- Pagination -->
+    </div>
+    <div id="secondary" class="col-md-4 widget-area" role="complementary">
+      <aside id="wpltfb-2" class="widget WPlookCauses">
+        <div class="widget-title">
+          <h3>Latest News</h3>
+        
+          <div class="clear"></div>
+        </div>
+        <div class="widget-event-body">
+          {% for post in post_list %}
+          <article class="cause-item">
+            <figure>
+              <a title="Image title" href="{{ post.get_absolute_url }}">
+              {% if post.image %}
+              <img src="{{ post.image.url }}" class="wp-post-image" alt="Image alt">
+              {% endif %}
+              </a>
+            </figure>
+            <h3 class="entry-header">
+              <a href="{{ post.get_absolute_url }}">{{ post.title |title }}</a>
+            </h3>
+            <div class="short-description">
+              <p>
+              {{ post.short_desc | truncatechars:190 }}
+            </p>
+            </div>
+          </article>
+          <br>
+          {% endfor %}
+        </div>
+          <div class="viewall fright"><a href="/news/" class="radius" title="View all chauses">view all</a></div>
+      </aside>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+{% endblock %}

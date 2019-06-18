@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<!--vertical bar ends above-->
+<!--content goes here-->
+<div class="container wid-cont">
+  <!--container starts above-->
+  <div class="cover-panel">
+    <!--cover panel starts above-->
+    <h2>List of Banners<span><a href="/admin/banner/add/"><button class="new-btn"><i class="fa fa-plus pad-rt"></i>Add New banner</button></a></span></h2>
+    <form style="width:100%;">
+      <table>
+        <thead>
+          <tr>
+            <th>S.No.</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actions</th>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for b in banner_list %}
+          <tr>
+            <td style="text-align:center;">{{forloop.counter }}</td>
+            <td>{{ b.title }}</td>
+            <td>{{ b.short_desc| truncatechars:40}}</td>
+            <td><a href="/admin/banner/edit/{{b.id}}/" title="Edit"><i class="fa fa-pencil-square-o edit-icon"></i></a>
+              <a href="/admin/banner/delete/{{b.id}}/" class="remove_banner" title="Delete"><i class="fa fa-trash-o trash-icon"></i></a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </form>
+    <!--cover panel ends below-->
+  </div>
+  <!--container ends below-->
+</div>
+<!--content goes here-->
+{% endblock %}

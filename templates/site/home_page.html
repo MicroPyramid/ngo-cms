@@ -1,0 +1,241 @@
+{% extends "site/base.html" %}
+{% load staticfiles %}
+ {% block extra-css %}
+ <style type="text/css">
+ #sticky_navigation{
+    background: transparent;
+    color: #fff;
+ }
+ </style>
+ {% endblock %}
+{% load thumbnail %}
+{% block content %}
+
+<div class="banner">
+  <img src="{% static 'site/images/cjws-banner-image.png'%}" width="100%">
+  <div class="inner_banner text-center">
+    <h1 class="banner_text">Small Effort Make Big Change</h1>
+      <p class="banner_text_p"> We are Ready for Provide Better Service to Make World Happy</p>
+      <a href="/contact-us/" class="contact_banner"> Contact us</a>
+    </div>
+  </div>
+<div class="container">
+<div id="main" class="site-main">
+  <div class="inner">
+    <!-- First widget areea -->
+    <div class="grid_8 first-home-widget-area">
+      <aside id="flexlatestnews" class="WPlookLatestNews flex-container-news" >
+        <div class="widget-title mright mleft" >
+          <h3>Featured News</h3>
+          <div class="clear"></div>
+        </div>
+        <div class="latestnews-body flexslider-news">
+          <ul class="slides">
+            {% for post in news_list %}
+            <li>
+              <div class="image fright">
+                {% if post.image %}
+                <img class="radius" src="{{ post.image.url }}" height="auto" width="100%" alt="Image alt">
+              </div>
+              {% endif %}
+              <div class="content fleft">
+                <h3><a href="{{ post.get_absolute_url }}">{{ post.title | title }}</a></h3>
+                <p class="category">{{ post.category }}</p>
+                <p class="description">{{ post.short_desc | truncatechars:340 }}</p>
+                <div class="flex-button-red"><a class="radius" href="{{ post.get_absolute_url }}">Read More <i class="icon-angle-right"></i></a></div>
+              </div>
+              {% empty %}
+            <li>"No Featured News"</li>
+            <div class="clear"></div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </aside>
+        <div class="viewall fright"><a href="/events/" class="radius" title="events">view all</a></div>
+    </div>
+    <!-- Second widget areea -->
+     <!-- third widget areea -->
+     <div class="container no-padding">
+       <div class="widget-title mright mleft" >
+          <h3>Categories</h3>
+        </div>
+      <div class="row Categories">
+        <div class="col-md-4">
+          <div class="image">
+            <img src="{% static 'site/images/agriculture.png'%}" width="100%">
+          </div>
+          <p>Agriculture Development</p>
+        </div>
+        <div class="col-md-4">
+         <div class="image">
+           <img src="{% static 'site/images/women_e.jpg'%}" width="100%">
+          </div>
+          <p>Women Empowerment</p>
+        </div>
+        <div class="col-md-4">
+         <div class="image">
+            <img src="{% static 'site/images/rural_dev.jpg'%}" width="100%">
+          </div>
+          <p>Rural Development</p>
+        </div>
+        <div class="col-md-4">
+         <div class="image">
+           <img src="{% static 'site/images/handcraft.jpg'%}" width="100%">
+          </div>
+          <p>Handicrafts</p>
+        </div>
+         <div class="col-md-4">
+         <div class="image">
+             <img src="{% static 'site/images/desaster.jpg'%}" width="100%">
+          </div>
+          <p>Disaster Management</p>
+        </div>
+         <div class="col-md-4">
+         <div class="image">
+            <img src="{% static 'site/images/health.jpg'%}" width="100%">
+          </div>
+          <p>Healthcare</p>
+        </div>
+         <div class="col-md-4">
+         <div class="image">
+            <img src="{% static 'site/images/child_right.png'%}" width="100%">
+          </div>
+          <p>Child Rights</p>
+        </div>
+          <div class="col-md-4">
+         <div class="image">
+            <img src="{% static 'site/images/economy.jpg'%}" width="100%">
+          </div>
+          <p>Economic Development</p>
+        </div>
+      </div>
+     </div>
+    <!-- third widget areea -->
+    <div class="container tax_80g">
+      <h3>Donating for Social Cause and <br>Saving on Tax under Section 80G</h3>
+      <p>As per the Income Tax Act, 1961, not all donations are subject to tax deductions. If you have donated to an NGO that is not certified under Section 80G of the Income Tax Act, you may not be entitled to tax benefits. To save on tax, ensure that the NGO you have chosen for donating meets this criterion.</p>
+      <h4>What is Section 80G?</h4>
+      <p>The Income Tax Act, 1961 encourages charitable deeds. This government body offers donation tax benefits to donors under Section 80G. NGOs and Trusts having a 12A certificate are entitled to 80G certification. A 12A registration is a one-time exemption obtained by a Trust/NGO. The IT Department intensely scrutinizes every detail before granting such a certification.</p>
+    </div>
+    <div class="grid_8 second-home-widget-area">
+      <aside id="wpltfbd-2" class="widget WPlookCauses">
+        <div class="widget-title">
+          <h3>Events</h3>
+          
+          <div class="clear"></div>
+        </div>
+        <div class="widget-event-body gallery"id="gallery">
+          {% for event in event_list %}
+          <article class="mb-4 pics animation all 1">
+            <figure>
+              {% if event.image %}
+              <a  title="{{ event.name }}" href="{{ event.get_absolute_url }}">
+              <img width="100%" height="auto" src="{{event.image.url}}" class="wp-post-image" alt="{{ event.name }}">
+              </a>
+              {% endif %}
+            </figure>
+            <div class="event_names_list">
+            <h3 class="entry-header">
+              <a title="{{ event.name }}" href="{{ event.get_absolute_url }}">{{ event.name | title }}</a>
+            </h3>
+            <!-- <div class="entry-meta-widget">
+              {% if event.start_date %}
+              <div class="date"><time datetime="2013-04-25T19:02:42+00:00"><i class="fa fa-calendar"></i>{{ event.start_date }}</time></div>
+              {% endif %}
+              {% if event.location %}
+              <div class="location"><i class="fa fa-map-marker"></i>{{ event.location }}</div>
+              {% endif %}
+            </div> -->
+          </div>
+          </article>
+
+          {% endfor %}
+        </div>
+      </aside>
+      <div class="viewall fright"><a href="/events/" class="radius" title="events">view all</a></div>
+    </div>
+<br clear="all">
+    <!-- Third widget areea -->
+    <div class="grid_8 third-home-widget-area">
+      <aside id="wpltfbs-f2w" class="widget WPlookCauses">
+        <div class="widget-title">
+          <h3>Latest News</h3>
+          <div class="clear"></div>
+        </div>
+        <div class="widget-causes-body">
+          <!-- First cause -->
+          {% for post in post_list %}
+          <article class="cause-item">
+            <figure class="grid_5">
+              <a title="{{ post.title }}" href="{{ post.get_absolute_url }}">
+              {% if post.image %}
+              <img src="{{post.image.url}}" class="wp-post-image" width="100%" height="auto"  alt="Image alt">
+              {% endif %}
+              </a>
+            </figure>
+            <div class="content grid_10">
+            <h3 class="entry-header">
+              <a href="{{ post.get_absolute_url }}">{{ post.title | title }}</a>
+            </h3>
+            <div class="short-description">
+              <p>{{ post.short_desc | truncatechars:340 }}</p>
+            </div>
+            </div>
+          </article>
+          {% empty %}
+          <li>No News</li>
+          {% endfor %}
+        </div>
+      </aside>
+      <div class="viewall fright"><a href="/news" class="radius" title="news">view all</a></div>
+    </div>
+  
+     <div class="sixth-home-widget-area">
+      <aside id="wpltfbe-2" class="widget WPlookStaff" >
+        <div class="widget-title">
+          <h3>Meet our Director</h3>
+          <div class="viewall fright"></div>
+          <div class="clear"></div>
+        </div>
+        <div class="row no-gutters">
+          <!-- First canditate -->
+          <div class="col-md-4 director_cjws">
+            <div class="candidate-margins">
+              <img src="{% static 'site/images/temp/Srinivasa Rao garu1.png'%}" alt="Image alt" width="100%;">
+              <h2>
+              <div class="name">Mr.I SRINIVASA RAO</div>
+            </div>
+          </div>
+          <!-- Second canditate -->
+          <!-- content about director-->
+          <div class="col-md-8 cjws_involvement left_padding">
+            <p>Chaitanya Jyothi Welfare Society is a voluntary organization with a strong belief in community involvement. The organisation has developed a good rapport and enjoys the trust of the district administration and other Government authorities. CJWS has organized the traditional handicraft workers from the rural part of Nellore district. CJWS is also involved in disaster preparedness and relief.</p>
+            <b> Phone:</b><span class="tel"> +91 9885307263</span><br />
+            <b> E-mail:</b><span class="email">cjws1990@cjws.in</span><br />
+          </div>
+          <!--content abt director ends above-->
+          <div class="clear"></div>
+        </div>
+      </aside>
+    </div>
+    <!-- Forth widget areea -->
+    <div class="grid_16 forth-home-widget-area">
+      <aside id="wpltfbf-2" class="widget WPlookAnounce radius" >
+        <div class="announce-body mright mleft">
+          <div class="margin">
+            <h1>Change Their World. Change Yours. This changes everything.</h1>
+            <h3>Provision of nutritional support nearly 500 children in 10 Mandals of Nellore District. <br /> Mobilization of nutrition support to 300 children through conduction of advocacy activities. <br />
+              Formation of Family Support Groups and Child Support groups.
+            </h3>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Fifth Widget area -->
+<div class="clear">
+</div>
+{% endblock %}
