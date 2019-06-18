@@ -1,0 +1,63 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<!--vertical bar ends above-->
+<!--content goes here-->
+<div class="container wid-cont">
+  <!--container starts above-->
+  <div class="cover-panel">
+    <!--cover panel starts above-->
+    <h2>Edit Page</h2>
+    <form name="create_page" id="page_edit_form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="section">
+        <div class="labl"><label id="id_title">Title</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><input type="text" name="title" id="page_edit_title1" value="{{page.title}}" />
+          <span class="error" id="title" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label id="id_content">Content</label><span style="color:red;">*</span></div>
+        <input type="hidden" id="description" name="content" value="{{page.content}}">
+        <div class="txt-box-div">
+          <div id="editor-container">{{page.content|safe}}</div>
+          <span class="error" id="content" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label id="id_slug">Clean Url</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><input type="text" name="slug" id="page_edit_slug1" class="page_edit_slug1" value="{{page.slug}}" />
+          <span class="error" id="slug" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="input_fields_wrap">
+          <div class="labl"><button class="edit_field_button" style="color:#fff; background:#ff6c60; border:1px solid #ff6c60; padding:5px;"><i class="fa fa-plus pad-rt"></i>Add More Images</button></div>
+          <div class="txt-box-div" style="min-height:25px"><input type="file" name="photos" id="photos"></div>
+
+          {% for i in page.photos.all %}
+            <div style="float:left; margin-right:25px; margin-top:10px;">
+            <a class="fancybox" rel="gallery1" href="{{ i.image.url }}" title="Westfield Waterfalls - Middletown CT Lower (Graham_CS)">
+            <img src="{{ i.image.url }}" alt="" height="80" width="120" />
+            <a href="/admin/delete_page_imgs/{{i.id}}/{{page.id}}" style="display:block;">delete</a>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="btn-rgt">
+        <button type="submit" id="page_edit_save" class="sav-btn"><i class="fa fa-floppy-o pad-rt"></i>Save</button>
+        <button id="page_edit_cancel" class="sav-btn">Cancel</button>
+      </div>
+    </form>
+    <div class="row marl progress-row">
+      <div class="progress">
+        <div class="bar">&nbsp;</div>
+        <div class="percent">0%</div>
+      </div>
+    </div>
+    <!--cover panel ends below-->
+  </div>
+  <!--container ends below-->
+</div>
+<!--content goes here-->
+{% endblock %}

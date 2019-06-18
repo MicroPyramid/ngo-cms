@@ -1,0 +1,44 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<!--vertical bar ends above-->
+<!--content goes here-->
+<div class="container wid-cont">
+  <!--container starts above-->
+  <div class="cover-panel">
+    <!--cover panel starts above-->
+    <h2>List of Articles <span><a href="/admin/article/add/"><button class="new-btn"><i class="fa fa-plus pad-rt"></i>Add New Article</button></a></span></h2>
+    <form style="width:100%;">
+      <table>
+        <thead>
+          <tr>
+            <th>S.No.</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in post_list %}
+          <tr>
+            <td style="text-align:center;">{{ forloop.counter }}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.category.name}}</td>
+            <td><a href="/admin/article/edit/{{p.id}}/" title="Edit"><i class="fa fa-pencil-square-o edit-icon"></i></a>
+              <a href="/admin/article/delete/{{p.id}}/" class="remove_article"  title="delete"><i class="fa fa-trash-o trash-icon"></i></a>
+              {% if p.is_active %}
+              <a href="/admin/article/change_state/{{p.id}}/" title="Hide"><i class="fa fa-eye-slash hide-icon"></i></a>
+              {% else %}
+              <a href="/admin/article/change_state/{{p.id}}/" title="Publish"><i class="fa fa-eye view-icon"></i></a>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </form>
+    <!--cover panel ends below-->
+  </div>
+  <!--container ends below-->
+</div>
+<!--content goes here-->
+{% endblock %}

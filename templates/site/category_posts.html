@@ -1,0 +1,68 @@
+{% extends "site/base.html" %}
+{% block content %}
+<!-- Small Teaser -->
+<div id="main" class="event_list entry-content">
+    <div class="container">
+  <div class="inner row">
+    <div id="primary" class="col-md-8 suffix_1">
+      <h3 class="text-left"> {{ cat.name| title }} </h3>
+      <br>
+      {% if post_list %}
+      {% for post in post_list %}
+      <!-- First cause -->
+      <article class="list mb-0 pb-0">
+        <div class="short-content">
+          <figure>
+            {% if post.image %}
+            <a title="{{ post.title }}" href="{{ post.get_absolute_url }}">
+            <img  class="wp-post-image" src="{{ post.image.url }}"  width="272px" height="150px" alt="Image cannot displ" width="100%">
+            </a>
+            {% endif %}
+          </figure>
+          <h1 class="entry-header">
+            <a href="{{ post.get_absolute_url }}">{{ post.title |title }}</a>
+          </h1>
+          <div class="short-description">
+            <p>{{ post.short_desc | truncatechars:265 }}</p>
+          </div>
+          <div class="entry-meta short-description">
+            <p class="m-0"><i class=""></i>{{ post.created_on }}</p>
+            <a class="fright " href="{{ post.get_absolute_url }}" title="{{ post.title }}">Read more</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+      {% else %}
+      No News..
+      {% endif %}
+      <!-- pagination -->
+      <ul class="pagination">
+        <li><a class="radius" href="/news/category/{{ cat.slug }}/?page=1">First</a></li>
+        {% for s in pages %}
+        <li {% ifequal s current_page %} class="active" {% endifequal %} ><a href="/news/category/{{ cat.slug }}/?page={{s}}">{{s}}</a></li>
+        {% endfor %}
+        <li><a href="/news/category/{{ cat.slug }}/?page={{last_page}}">Last</a></li>
+      </ul>
+    </div>
+    <!-- Right Column -->
+    <div id="secondary" class="col-md-4 widget-area" role="complementary">
+      <div id="meta-2" class="widget widget_meta">
+        <h3 class="text-left">Categories</h3>
+        <ul>
+          {% for cat in category_list %}
+          <li><a href="/news/category/{{ cat.slug }}" title="{{cat.name}}">{{ cat.name| title }}</a></li>
+          {% endfor %}
+        </ul>
+        <br>
+        <h3 class="text-left">Archives</h3>
+        <ul>
+          {% for month in archives %}
+          <li><a href="/news/archives/{{month.year}}/{{month.month}}/" title="">{{ month |date:'M Y' }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

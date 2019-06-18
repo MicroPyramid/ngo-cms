@@ -1,0 +1,103 @@
+{% extends "site/base.html" %}
+{% block content %}
+<!-- #masthead .site-header -->
+<div id="main" class="site-main container">
+  <div class="inner">
+    <div id="primary" class="col-md-12">
+      <article class="single">
+       
+        <div class="entry-content">
+          <div class="col-md-8 m-auto">
+              <h3>{{ event.name | title }} </h3>
+          <figure>
+            {% if event.image %}
+            <img class="wp-post-image" src="{{ event.image.url }}"  alt="Image alt">
+            {% endif %}
+              <div class="radius">
+          <div class="month-time">
+            {% if event.start_date %}
+            <span class="day">{{ event.start_date.day }} - </span>
+            <span class="month">{{ event.start_date.month }} - {{ event.start_date.year }}</span>
+            {% endif %}
+             <span class="event-address">
+          <span class="event-location">
+          <i class="fa fa-map-marker"></i>
+          {% if event.location %}
+          </span>
+          {{ event.location }}
+          </span>
+          </div>
+         
+          {% endif %}
+          <div class="clear"></div>
+          <div class="book-your-place">
+          </div>
+        </div>
+          </figure>
+         
+        </div>
+          <div class="long-description">
+            {% if event.description %}
+            <p>{{ event.description |safe }}</p>
+            {% endif %}
+            <br />
+            <div class="row contact_desk">
+             <div class="col-md-6 d-flex">
+               <h4> Contact Details :</h4>
+            {% if event.contact_details %}
+            <p>{{ event.contact_details }}</p>
+            {% endif %}
+            {% if event.start_date.day %}
+          </div>
+          <div class="col-md-6 d-flex text-right">
+             <h4>From:</h4>
+            <p>{{ event.start_date }}</p>
+            {% endif %}
+            {% if event.end_date.day %}
+            <h4>To:</h4>
+            <p>{{ event.end_date }}</p>
+            {% endif %}
+          </div>
+           
+           </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </article>
+    </div>
+    <div id="secondary" class="col-md-12 widget-area" role="complementary">
+      <aside id="wpltfb-2" class="widget WPlookCauses">
+        <div class="widget-title">
+          <h3>Latest Events</h3>
+        
+          <div class="clear"></div>
+        </div>
+        <div class="widget-event-body">
+          {% for event in event_list %}
+          <article class="event-item">
+            {% if event.image %}
+            <figure>
+              <a title="{{ event.name }}" href="{{ event.get_absolute_url }}">
+              <img src="{{ event.image.url }}" class="wp-post-image" alt="Image alt">
+              </a>
+            </figure>
+            {% endif %}
+            <h3 class="entry-header">
+              <a title="{{ event.name }}" href="{{ event.get_absolute_url }}">{{ event.name |title}}</a>
+            </h3>
+            <div class="entry-meta-widget">
+              <div class="date"><time datetime="2013-04-25T19:02:42+00:00"><i class="far fa-calendar-check"></i>{% if event.start_date %} {{ event.start_date }}{% endif %}</time></div>
+              <div class="location"><i class="fas fa-map-marker-alt"></i></i> <a href="#">{% if event.location %} {{ event.location }}{% endif %}</a></div>
+            </div>
+          </article>
+          {% endfor %}
+            <div class="viewall fright"><a href="/events/" class="radius" title="Uppcoming Events">view all</a></div>
+        </div>
+
+      </aside>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+{% endblock %}

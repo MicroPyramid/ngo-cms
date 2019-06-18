@@ -1,0 +1,40 @@
+{% extends "admin/base.html"%}
+{% block content %}
+<!--vertical bar ends above-->
+<!--content goes here-->
+<div class="container wid-cont">
+<!--container starts above-->
+<div class="cover-panel">
+  <!--cover panel starts above-->
+  <h2>Edit Category</h2>
+  <form name="create_category" id="category_edit_form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="section">
+      <div class="labl"><label id="id_name">Name</label><span style="color:red;">*</span></div>
+      <div class="txt-box-div"><input type="text" name="name" id="category_edit_name1" value="{{category.name}}" />
+        <span class="error" id="name" style='display:none;'></span>
+      </div>
+      <div class="section">
+        <div class="labl"><label>Description</label></div>
+        <div class="txt-box-div"><textarea rows="7" name="description">{{category.description}}</textarea>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label>Clean Url</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><input type="text" name="slug" id='category_edit_slug1' class="category_edit_slug1" value="{{category.slug}}" />
+          <span class="error" id="slug" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="btn-rgt">
+        <button type="submit" id="category_edit_save" class="sav-btn"><i class="fa fa-floppy-o pad-rt"></i>Save</button>
+        <button id="category_edit_cancel" class="sav-btn">Cancel</button>
+      </div>
+  </form>
+  <!--cover panel ends below-->
+  </div>
+  <!--container ends below-->
+</div>
+<!--content goes here-->
+
+{% endblock %}
+

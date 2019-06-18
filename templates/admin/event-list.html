@@ -1,0 +1,52 @@
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!--vertical bar ends above-->
+<!--content goes here-->
+<div class="container wid-cont">
+  <!--container starts above-->
+  <div class="cover-panel">
+    <!--cover panel starts above-->
+    <h2>List of Events <span><a href="/admin/event/add/"><button class="new-btn"><i class="fa fa-plus pad-rt"></i>Add New Event</button></a></span></h2>
+    <form style="width:100%;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:5%;">S.No.</th>
+            <th style="width:38%;">Name</th>
+            <th>short Description</th>
+            <th>Start Date</th>
+            <th>Actions</th>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in event_list %}
+          <tr>
+            <td style="text-align:center; width:5%;">{{ forloop.counter }}</td>
+            <td style="width:38%;">{{e.name}}</td>
+            <td>{{e.short_desc | truncatechars:40}}</td>
+            <td>{{e.start_date}}</td>
+            <td><a href="/admin/event/edit/{{e.id}}/" title="Edit"><i class="fa fa-pencil-square-o edit-icon"></i></a>
+              <a href="/admin/event/delete/{{e.id}}/" class="remove_event" title="Delete"><i class="fa fa-trash-o trash-icon"></i></a>
+              {% if e.is_active %}
+              <a href="/admin/event/change_state/{{e.id}}/" title="Hide"><i class="fa fa-eye-slash hide-icon"></i></a>
+              {% else %}
+              <a href="/admin/event/change_state/{{e.id}}/" title="Publish"><i class="fa fa-eye view-icon"></i></a>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </form>
+    <!--cover panel ends below-->
+  </div>
+  <!--container ends below-->
+</div>
+<!--content goes here-->
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'admin/js/cjws_my_script.js' %}"></script>
+{% endblock %}

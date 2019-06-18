@@ -1,0 +1,106 @@
+{% extends "admin/base.html"%}
+{% load staticfiles %}
+{% block content %}
+<head>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//malsup.github.com/jquery.form.js"></script>
+  <link rel="stylesheet" type="text/css" href="//xoxco.com/projects/code/tagsinput/jquery.tagsinput.css" />
+  <script type="text/javascript" src="//xoxco.com/projects/code/tagsinput/jquery.tagsinput.js"></script>
+  <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js'></script>
+  <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/start/jquery-ui.css" />
+  <link rel="stylesheet" href="{% static 'admin/css/cjws_style.css' %}" />
+</head>
+<!--vertical bar ends above-->
+<!--content goes here-->
+<div class="container wid-cont">
+  <!--container starts above-->
+  <div class="cover-panel">
+    <!--cover panel starts above-->
+    <h2>Edit Article</h2>
+    <form name="create_post" id="post_edit_form" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="section">
+        <div class="labl"><label id="id_title">Title</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><input type="text" name="title" name="title" id="post_edit_title1" value="{{post.title }}" />
+          <span class="error" id="title" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label>Category</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div">
+          <select name="category">
+            <option value="{{ post.category.id }}">{{ post.category }}</option>
+            {% for c in category_list %}
+            <option value= {{c.id}}>{{ c.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label id="id_short_desc"> Short Description</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><textarea name="short_desc" rows="7">{{post.short_desc}}</textarea>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label id="id_content">Content</label><span style="color:red;">*</span></div>
+        <input type="hidden" id="description" name="description">
+        <div class="txt-box-div">
+          <div id="editor-container">{{post.description|safe}}</div>
+          <div class="error" id="id_description" style='display:none;'></div>
+        </div>
+      </div>
+      <span class="error" id="image" style='display:none;'></span>
+      <div class="section">
+        <div class="labl"><label id="id_image">Image</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div">
+          <input type="file" name="image" id="image" />
+          <p>{{post.image}}</p>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label>Featured News</label></div>
+        <div class="txt-box-div chk"><input type="checkbox" name="is_featured_news" value="True" {% if post.is_featured_news %} checked {% endif %}>
+        </div>
+      </div>
+      <div class="section">
+        <div class="labl"><label id="id_slug">Clean Url</label><span style="color:red;">*</span></div>
+        <div class="txt-box-div"><input type="text" name="slug" id="post_edit_slug1" class="post_edit_slug1" value={{post.slug }} />
+          <span class="error" id="slug" style='display:none;'></span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="input_fields_wrap">
+          <div class="labl"><button class="edit_field_button" style="color:#fff; background:#ff6c60; border:1px solid #ff6c60; padding:5px;"><i class="fa fa-plus pad-rt"></i>Add More Images</button></div>
+          <div class="txt-box-div" style="min-height:25px"><input type="file" name="photos">{{post.image }}</div>
+          {# <a href="{{ post.image.url }}">image</a> #}
+        </div>
+        <div class="form-group adjust-sc">
+          {% for img in post.photos.all %}
+          {# <h1>{{img.image.url}}</h1> #}
+          <div style="float:left; margin-right:25px; margin-top:10px;">
+            <a class="fancybox" rel="gallery1" href="{{ img.image.url }}" title="Westfield Waterfalls - Middletown CT Lower (Graham_CS)">
+            <img src="{{ img.image.url }}" alt="" height="80" width="120"  />
+            <a href="/admin/delete_gal_img/{{img.id}}/{{post.id}}" class="del-img-btn">Delete<i class="fa fa-times"></i></a>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+  </div>
+  <div class="btn-rgt">
+  <button type="submit" id="post_edit_save" class="sav-btn"><i class="fa fa-floppy-o pad-rt"></i>Save</button>
+  <button id="post_edit_cancel" class="sav-btn">Cancel</button>
+  </div>
+  </form>
+  <div class="row marl progress-row">
+    <div class="progress">
+      <div class="bar">&nbsp;</div>
+      <div class="percent">0%</div>
+    </div>
+  </div>
+  <!--cover panel ends below   -->
+</div>
+<!--container ends below-->
+</div>
+<!--content goes here-->
+{% endblock %}

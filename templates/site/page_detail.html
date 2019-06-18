@@ -1,0 +1,66 @@
+{% extends "site/base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% load img %}
+{% load thumbnail %}
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+</head>
+<!-- #masthead .site-header -->
+<div id="main" class="site-main container_16">
+  <div class="inner">
+    <div id="primary" class="grid_11 suffix_1">
+      <article class="single">
+        <div class="entry-content">
+          <div class="long-description">
+            <h3>{{ page.title |title}}</h3>
+            <br />{{page.content|safe}}
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </article>
+      <h3>Our Gallery</h3>
+      <div class="container-img">
+        {% for img in page.photos.all %}
+        <ul>
+          <li style=""><a data-fancybox="gallery" href="{{ img.image.url }}" title="{{ img.image.name |imgname }}"><img src="{{ img.image.url }}" alt="" /></a></li>
+        </ul>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="secondary" class="grid_4 widget-area" role="complementary">
+      <aside id="wpltfb-2" class="widget WPlookCauses">
+        <div class="widget-title">
+          <h3>Events</h3>
+          <div class="viewall fright"><a href="/events/" class="radius" title="View all chauses">view all</a></div>
+          <div class="clear"></div>
+        </div>
+        <div class="widget-event-body">
+          {% for event in event_list %}
+          <article class="event-item">
+            <figure>
+              {% if event.image %}
+              <a title="{{ event.name }}" href="{{ event.get_absolute_url }}">
+              <img width="272" height="150" src="{{ event.image.url }}" class="wp-post-image" alt="Image alt">
+              </a>
+              {% endif %}
+            </figure>
+            <h3 class="entry-header">
+              <a title="Change a Life Through Education Lorem Ipsum dolar sit and dolar" href="{{ event.get_absolute_url }}">{{ event.name | title }}</a>
+            </h3>
+            <div class="entry-meta-widget">
+              <div class="date"><time datetime="2013-04-25T19:02:42+00:00"><i class="fa fa-calendar"></i>{% if event.start_date %} {{ event.start_date }}{% endif %}</time></div>
+              <div class="location"><i class="fa fa-map-marker"></i> <a href="#">{{ event.location }}</a></div>
+            </div>
+          </article>
+          <br>
+          {% endfor %}
+        </div>
+      </aside>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+{% endblock %}
