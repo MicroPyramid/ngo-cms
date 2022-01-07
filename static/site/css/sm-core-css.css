@@ -1,7 +1,7 @@
-/* SmartMenus Core CSS (it's not recommended editing this)
+		/* SmartMenus Core CSS (it's not recommended editing this)
 ===============================================================*/
 
-.sm,.sm ul,.sm li{display:block;list-style:none;padding:0;margin:0;line-height:normal;direction:ltr;}
+.sm,.sm ul,.sm li{list-style:none;padding:0;margin:0;line-height:normal;direction:ltr;}
 ul.sm ul{position:absolute;top:-999999px;width:100px;}
 ul.sm li{position:relative;float:left;}
 ul.sm a{    position: relative;

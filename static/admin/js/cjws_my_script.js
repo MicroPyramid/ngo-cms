@@ -35,7 +35,7 @@ $(document).ready(function() {
     }, "json");
   });
 });
-
+if (document.getElementById("editor-container")) {
     var quill = new Quill('#editor-container', {
       modules: {
         toolbar: [
@@ -46,17 +46,18 @@ $(document).ready(function() {
       },
       theme: 'snow' // or 'bubble'
     });
-
+   }
     var preciousContent = document.getElementById('myPrecious');
     var justTextContent = document.getElementById('justText');
     var justHtmlContent = document.getElementById('justHtml');
-
-    quill.on('text-change', function() {
-      var delta = quill.getContents();
-      var text = quill.getText();
-      var justHtml = quill.root.innerHTML;
-      $('#description').val(justHtml);
-    });
+    if (document.getElementById("editor-container")) {
+      quill.on('text-change', function() {
+          var delta = quill.getContents();
+          var text = quill.getText();
+          var justHtml = quill.root.innerHTML;
+          $('#description').val(justHtml);
+        });
+    }
 
 $(document).ready(function() {
   $('#banner_add_form').ajaxForm({

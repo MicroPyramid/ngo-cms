@@ -2748,6 +2748,13 @@ a.button.black:hover {
 #main-menu{
     margin-top: 30px!important;
   }
+  #main-menu ul{
+        top: 33px;
+    left: -58px;
+  }
+   #main-menu ul li a{
+
+   }
 .toggle-content {
   background: #10bcfa;
   border: 1px solid #10bcfa;
@@ -3295,10 +3302,16 @@ margin: 0px auto !important;
 }
 
 .slides .content .description{
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.6rem;
   color: #444;
-  font-size: 0.9rem;
+  font-size: 1rem;
+}
+.description{
+  font-weight: 500;
+  line-height: 1.7rem;
+  color: #000;
+  font-size: 1rem!important;
 }
 .slides .content h3 a{
      text-decoration: none;
@@ -3512,11 +3525,14 @@ padding: 0px 25px 15px 25px;
 .banner .contact_banner{
     margin: 0px auto;
     text-align: center;
-    border: 2px solid #10bcfa;
     font-size: 1rem;
     font-weight: 600;
-    background: #fff; 
-    padding: 5px;
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    background-color: #3cc88f;
+    padding: 15px 45px;
+    border-radius: 30px;
 }
 .banner .contact_banner:hover{
   text-decoration: none;
@@ -3552,8 +3568,320 @@ padding: 0px 25px 15px 25px;
        display: inline-block;
     color: #336eab;
     font-size: 1.5rem;
-    margin: 2% 0px;
+    margin: 2.1% 0px;
     width: 100%;
     text-align: left;
     font-weight: 700;
   }
+  
+  
+  .navigation a {
+  text-decoration: none;
+}
+
+
+.navigation ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.navigation li {
+    color: #fff;
+    display: block;
+    float: left;
+    padding: 1rem;
+    position: relative;
+    text-decoration: none;
+  transition-duration: 0.5s;
+}
+  
+.navigation li a {
+  color: #fff;
+}
+
+.navigation li:hover {
+    cursor: pointer;
+}
+
+.navigation ul li ul {
+    visibility: hidden;
+  opacity: 0;
+  min-width: 5rem;
+    position: absolute;
+  transition: all 0.5s ease;
+    left: 0;
+  display: none;
+}
+
+.navigation ul li:hover > ul,
+ul li ul:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+  position: absolute;
+  top: 10px;
+}
+
+.navigation ul li ul li {
+    clear: both;
+  width: 100%;
+}
+.donation{
+  margin-top: 6.5rem;
+}
+.donation img{ 
+    height: 45vh;
+    background-position: top;
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+  }
+  .donation .inner_banner{
+    height: 45vh;
+    margin-top: 6.5rem;
+    background: rgba(4, 4, 4, 0.22);
+  }
+  .donation .banner_text {
+        padding-top: 18vh;
+  }
+  .donate-section {
+    position: relative;
+    padding: 130px 0px 100px;
+    background-color: #ffffff;
+}
+.tabs-box {
+    position: relative;
+}
+.donate-section .title-column {
+    position: relative;
+    margin-bottom: 30px;
+}
+.donate-section .title-column .inner {
+    position: relative;
+    display: block;
+}
+.donate-section h2 {
+    font-size: 48px;
+    text-transform: capitalize;
+    line-height: 1.20em;
+    margin-bottom: 20px;
+}
+.donate-section .title-column .text {
+    position: relative;
+    font-size: 15px;
+    line-height: 1.7em;
+    margin-bottom: 80px;
+}
+.donate-section .title-column .image-box {
+    position: relative;
+}
+.donate-section .title-column .image-box img {
+    position: relative;
+    border-radius: 20px;
+    height: 40vh;
+}
+.donate-section .form-column {
+    position: relative;
+}
+.donate-section .form-column .inner {
+    position: relative;
+    display: block;
+    padding-left: 80px;
+}
+.donate-section h3 {
+    font-size: 24px;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+.donate-form ul li{
+    padding: 10px 20px;
+    background: #c7cad3;
+    border-radius: 5px;
+    margin-bottom: 1rem;}
+
+.donate-form ul li a{
+    font-size: 1rem;
+    color: #000;
+    font-weight: bold;}
+.donate-form .form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+.donate-form .form-group .field-label {
+    display: block;
+    line-height: 24px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 15px;
+}
+.donate-form .select-amount {
+    position: relative;
+    margin: 0px -10px;
+}
+.donate-form .select-box {
+    position: relative;
+    float: left;
+    width: 25%;
+    padding: 0px 10px;
+    text-align: center;
+    margin: 0px 0px 20px;
+}
+.donate-form .select-box input[type="radio"] {
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+    position: absolute;
+    opacity: 0;
+}
+.donate-form .select-box label {
+    display: block;
+    line-height: 24px;
+    padding: 12px 10px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: #25283a;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 500ms ease;
+}
+
+.donate-form .select-box input[type="radio"]:checked+label {
+    background: #3cc88f;
+    border-color: #3cc88f;
+}
+.donate-form .select-box input[type="radio"]:checked+label {
+    color: #ffffff;
+}
+.donate-form .input-box {
+    position: relative;
+    width: 100%;
+}
+.donate-form .method {
+    position: relative;
+    padding: 20px 0px 0px;
+}
+.donate-section h3 {
+    font-size: 24px;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+.donate-form .method .form-group {
+    margin-bottom: 5px;
+}
+.donate-form .form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+.donate-form .radio-block {
+    position: relative;
+    display: inline-block;
+    margin-right: 30px;
+}
+.donate-form .radio-block input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+}
+.donate-form .radio-block label:before {
+    content: '';
+    font-family: 'Font Awesome 5 Free';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    line-height: 18px;
+    color: #ffffff;
+    font-size: 10px;
+    text-align: center;
+    font-weight: 900;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+.donate-form .radio-block label {
+    position: relative;
+    display: block;
+    padding-left: 32px;
+    line-height: 24px;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+.donate-form .personal-info {
+    position: relative;
+    padding: 20px 0px;
+}
+.donate-form .row .form-group {
+    padding: 0px 10px;
+}
+.donate-form .form-group .field-label {
+    display: block;
+    line-height: 24px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 15px;
+}
+.donate-form .donation-total {
+    position: relative;
+    font-weight: 600;
+    font-size: 16px;
+    color: #25283a;
+    padding-top: 20px;
+}
+.btn-style-one {
+      position: relative;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 30px;
+    border: 0px;
+    padding: 0px;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: capitalize;
+    border-radius: 30px;
+    overflow: hidden;
+}
+.btn-style-one .btn-title {
+    position: relative;
+    display: block;
+    z-index: 1;
+    color: #fff;
+     background-color: #3cc88f;
+    padding: 15px 45px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+.Financial_detail{
+  margin-top: 2.3rem;
+}
+.Financial_detail ul {
+  margin-top: 1.2rem;
+}
+.Financial_detail ul li {
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 5px;
+}
+.payment-method{
+  margin-top: 6rem;
+  margin: 0px auto;
+}
+.payment-method h2{
+  margin-bottom: 2.2rem;
+  margin-top: 4rem;
+}
+.employee-section h1{
+  line-height: 3rem;
+}

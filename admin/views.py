@@ -148,7 +148,9 @@ def add_category(request):
     validate_category = CategoryForm(request.POST)
     errors = {}
     if validate_category.is_valid():
-        new_category = validate_category.save(commit=False)
+        new_category = validate_category.save()
+        if request.FILES['image']:
+            new_category.image = request.FILES['image']
         new_category.save()
         data = {"data": 'Category created successfully', "error": False}
         return JsonResponse(data)
@@ -265,7 +267,10 @@ def edit_category(request, pk):
     errors = {}
 
     if validate_category.is_valid():
-        validate_category.save()
+        new_category = validate_category.save()
+        if request.FILES['image']:
+            new_category.image = request.FILES['image']
+            new_category.save()
         data = {"data": 'Category edited successfully', "error": False}
         return JsonResponse(data)
 

@@ -1,0 +1,57 @@
+{% extends "site/base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% load img %}
+{% load thumbnail %}
+<div class="donation">
+<div class="banner">
+  <img src="{% static 'site/images/finance-banner.jpg'%}" width="100%">
+  <div class="inner_banner text-center">
+    <h1 class="banner_text">Audited Financial Statements </h1>
+    </div>
+  </div>
+  <div class="container">
+    <section class="donate-section">
+        <div class="auto-container">
+          <div class="tabs-box">
+                <div class="row">
+                    
+                    <div class="title-column col-lg-6 col-md-12 col-sm-12">
+                      <div class="inner">
+                          <h2>CJWS Annual Reporting</h2>
+                           <div class="text">Chaitanya Jyothi Welfare Society is a voluntary organization with a strong belief in community involvement. The organisation has developed a good rapport and enjoys the trust of the district administration and other Government authorities. CJWS has organized the traditional handicraft workers from the rural part of Nellore district. CJWS is also involved in disaster preparedness and relief. </div>
+                            <figure class="image-box"> <img src="{% static 'site/images/economic_empower.png'%}" width="100%"></figure>
+                        </div>
+                    </div>
+                    <div class="form-column col-lg-6 col-md-12 col-sm-12">
+                      <h3 class="pl-5 ml-4 mb-4 mt-1">CJWS Annual Reporting</h3>
+                      <div class="inner">
+                          <div class="donate-form">
+                               <ul>
+                                 <li><a href="https://drive.google.com/file/d/1S0BR9GbhLJ0dTlFUzIH7CNbApSHYeUi-/view?usp=sharing">2018-2019 Financial Statement</a></li>
+                                 <li> <a href="https://drive.google.com/file/d/1W0DUi9oE6GZNgSHc_9gxtzHOYKfJ_THw/view?usp=sharing">2017-2018 Financial Statement</a> </li>
+                                 <li><a href="https://drive.google.com/file/d/1BckfBv6d9JlUjq4izVgVxJOL1bgV-Be4/view?usp=sharing">2016-2017 Financial Statement</a></li>
+                               </ul>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="Financial_detail form-column col-lg-12 col-md-12 col-sm-12">
+                      <h3>Account Details</h3>
+                      <ul>
+                        <li>Account Name : <b>Chaitanya Jyothi Welfare Society</b></li>
+                          <li>Bank : <b>State bank of india</b></li>
+                        <li>Account Number : <b>10481600970 </b></li>
+                         <li>IFSC Code : <b> SBIN0007457</b></li>
+                          <li>FCRA No : <b>010310060</b> </li>
+                          <li>IT certificates U/S 80G & 12A are available</li>
+                      </ul>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </section>    
+  </div>
+</div>
+{% endblock %}

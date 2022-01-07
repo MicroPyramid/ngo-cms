@@ -1,0 +1,104 @@
+{% extends "site/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="donation">
+<div class="banner">
+  <img src="{% static 'site/images/bg-banner.jpg'%}" width="100%">
+  <div class="inner_banner text-center">
+    <h1 class="banner_text">Small Effort Make Big Change</h1>
+      <p class="banner_text_p"> Make Donation</p>
+    </div>
+  </div>
+  <div class="container">
+  	<section class="donate-section">
+        <div class="auto-container">
+        	<div class="tabs-box">
+                <div class="row">
+                    
+                    <div class="title-column col-lg-6 col-md-12 col-sm-12">
+                    	<div class="inner">
+                        	<h2>Please Make Your Donation</h2>
+                            <div class="text">Donate now to support Poor Children get access to quality education, maternal and child health care services, sustainable livelihood opportunities, and relief and rehabilitation during disasters and support for disaster preparedness.</div>
+                            <figure class="image-box"> <img src="{% static 'site/images/economic_empower.png'%}" width="100%"></figure>
+                        </div>
+                    </div>
+                    <div class="form-column col-lg-6 col-md-12 col-sm-12">
+                    	<div class="inner">
+                        	<div class="donate-form">
+                                <form method="post" action="contact.html">
+                                    <h3>Your Donation</h3>
+                                    
+                                    <div class="form-group">
+                                        <div class="field-label">How much would you like to donate?</div>
+                                        <div class="select-amount clearfix">
+                                            <div class="select-box"><input type="radio" name="payment-group" id="radio-one"><label for="radio-one">100</label></div>
+                                            <div class="select-box"><input type="radio" name="payment-group" id="radio-two"><label for="radio-two">200</label></div>
+                                            <div class="select-box"><input type="radio" name="payment-group" id="radio-three" checked=""><label for="radio-three">500</label></div>
+                                            <div class="select-box"><input type="radio" name="payment-group" id="radio-four"><label for="radio-four">1000</label></div>
+                                        </div>
+                                        <div class="input-box"><input type="text" class="form-control" name="other-payment" value="" placeholder="or Give a Custom Amount"></div>
+                                    </div>
+                                    
+                                    <div class="method">
+                                        <h3>Payment Method</h3>
+                                        <div class="form-group">
+                                            <div class="clearfix">
+                                            	<div class="radio-block"><input type="radio" class="form-control" id="radio-1" name="method"><label for="radio-1">Credit Card</label></div>
+                                                <div class="radio-block"><input type="radio" class="form-control" id="radio-2" name="method"><label for="radio-2">Debit Card</label></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="personal-info">
+                                    	<h3>Personal Information</h3>
+                                    
+                                        <div class="row">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                                <div class="field-label">First Name</div>
+                                                <input type="text" name="field-name" value="" class="form-control" placeholder="First Name" required="">
+                                            </div>
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                                <div class="field-label">Last Name</div>
+                                                <input type="text" name="field-name" value="" class="form-control" placeholder="Last Name">
+                                            </div>
+                                            
+                                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                                <div class="field-label">Email address</div>
+                                                <input type="email" name="field-name" value="" class="form-control" placeholder="Email address" required="">
+                                            </div>
+                                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                                <div class="field-label">Phone Number</div>
+                                                <input type="email" name="field-name" value="" class="form-control" placeholder="Email address" required="">
+                                            </div>
+                                            
+                                            <div class="p-0 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="donation-total">Donation Total: <strong>500.00</strong></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                       <button type="submit" class="theme-btn btn-style-one"><span class="btn-title">Donate Now</span></button>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="Financial_detail form-column col-lg-12 col-md-12 col-sm-12">
+                    	<h3>Financial Details</h3>
+                    	<ul>
+                    		<li>Account Name : <b>Chaitanya Jyothi Welfare Society</b></li>
+                    	  <li>Account Number : <b>26837491230914 </b></li>
+                    	   <li>IFSC Code : <b> SBIN000348</b></li>
+                          <li>80G Registation Number : NQ.DIT (E) I 2010-11/ DEL CE 22419 28022011/2595</li>
+                          <li>Dated: 28/2/2011</li>
+                    	</ul>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </section>    
+  </div>
+</div>
+{% endblock %}

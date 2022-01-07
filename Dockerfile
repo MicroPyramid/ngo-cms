@@ -6,4 +6,4 @@ ENV AWS_SECRET_ACCESS_KEY $AWS_SECRET_ACCESS_KEY
 WORKDIR /home/cjws/
 RUN pip install -r requirements.txt
 
-
+CMD ["/bin/sh", "/home/cjws/entrypoint.sh"]
