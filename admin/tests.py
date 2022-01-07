@@ -6,6 +6,7 @@ from admin.models import *
 from blog.models import *
 # from django.urls import reverse
 from events.models import *
+from django.core.files.uploadedfile import SimpleUploadedFile
 # from PIL import Image
 # import tempfile
 
@@ -150,8 +151,10 @@ class category_view_testing(TestCase):
     def test_category_post_form_valid(self):
         self.client.login(
             email="abc@gmail.com", password="abc123")
+        image = open('static/site/images/agriculture.png', 'rb')
         url = '/admin/category/add/'
-        data = {'name': "meghana", 'description': "asdfg", 'slug': "meghana"}
+        data = {'name': "meghana", 'description': "asdfg", 'slug': "meghana",
+                'image': SimpleUploadedFile(image.name, image.read())}
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
 
@@ -182,7 +185,9 @@ class category_view_testing(TestCase):
         self.client.login(
             email="abc@gmail.com", password="abc123")
         url = '/admin/category/edit/' + str(self.category.id) + '/'
-        data = {'name': 'magy', 'description': "qwerty", 'slug': 'magy'}
+        image = open('static/site/images/agriculture.png', 'rb')
+        data = {'name': 'magy', 'description': "qwerty", 'slug': 'magy',
+                'image': SimpleUploadedFile(image.name, image.read())}
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
 

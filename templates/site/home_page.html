@@ -4,7 +4,7 @@
  <style type="text/css">
  #sticky_navigation{
     background: transparent;
-    color: #fff;
+    color: #ffffff;
  }
  </style>
  {% endblock %}
@@ -12,7 +12,7 @@
 {% block content %}
 
 <div class="banner">
-  <img src="{% static 'site/images/cjws-banner-image.png'%}" width="100%">
+  <img src="{% static 'site/images/cjws__banner.jpg'%}" width="100%">
   <div class="inner_banner text-center">
     <h1 class="banner_text">Small Effort Make Big Change</h1>
       <p class="banner_text_p"> We are Ready for Provide Better Service to Make World Happy</p>
@@ -24,10 +24,9 @@
   <div class="inner">
     <!-- First widget areea -->
     <div class="grid_8 first-home-widget-area">
-      <aside id="flexlatestnews" class="WPlookLatestNews flex-container-news" >
-        <div class="widget-title mright mleft" >
+      <aside id="flexlatestnews" class="row" >
+        <div class="widget-title col-lg-12 mright mleft" >
           <h3>Featured News</h3>
-          <div class="clear"></div>
         </div>
         <div class="latestnews-body flexslider-news">
           <ul class="slides">
@@ -61,54 +60,16 @@
           <h3>Categories</h3>
         </div>
       <div class="row Categories">
+      {% for category in category_list %}
+        {% if category.image %}
         <div class="col-md-4">
           <div class="image">
-            <img src="{% static 'site/images/agriculture.png'%}" width="100%">
+            <a href="/news/category/{{category.slug}}/"><img src="{{category.image.url}}" width="100%"></a>
           </div>
-          <p>Agriculture Development</p>
+          <p>{{category.name}}</p>
         </div>
-        <div class="col-md-4">
-         <div class="image">
-           <img src="{% static 'site/images/women_e.jpg'%}" width="100%">
-          </div>
-          <p>Women Empowerment</p>
-        </div>
-        <div class="col-md-4">
-         <div class="image">
-            <img src="{% static 'site/images/rural_dev.jpg'%}" width="100%">
-          </div>
-          <p>Rural Development</p>
-        </div>
-        <div class="col-md-4">
-         <div class="image">
-           <img src="{% static 'site/images/handcraft.jpg'%}" width="100%">
-          </div>
-          <p>Handicrafts</p>
-        </div>
-         <div class="col-md-4">
-         <div class="image">
-             <img src="{% static 'site/images/desaster.jpg'%}" width="100%">
-          </div>
-          <p>Disaster Management</p>
-        </div>
-         <div class="col-md-4">
-         <div class="image">
-            <img src="{% static 'site/images/health.jpg'%}" width="100%">
-          </div>
-          <p>Healthcare</p>
-        </div>
-         <div class="col-md-4">
-         <div class="image">
-            <img src="{% static 'site/images/child_right.png'%}" width="100%">
-          </div>
-          <p>Child Rights</p>
-        </div>
-          <div class="col-md-4">
-         <div class="image">
-            <img src="{% static 'site/images/economy.jpg'%}" width="100%">
-          </div>
-          <p>Economic Development</p>
-        </div>
+        {% endif %}
+      {% endfor %}
       </div>
      </div>
     <!-- third widget areea -->
@@ -220,7 +181,7 @@
       </aside>
     </div>
     <!-- Forth widget areea -->
-    <div class="grid_16 forth-home-widget-area">
+    <div class="col-lg-12 p-0 forth-home-widget-area">
       <aside id="wpltfbf-2" class="widget WPlookAnounce radius" >
         <div class="announce-body mright mleft">
           <div class="margin">

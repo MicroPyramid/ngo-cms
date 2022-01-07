@@ -19,12 +19,14 @@ def index(request):
         is_active=True).order_by('-start_date')[0:4]
     menu_list = Menu.objects.filter(parent=None, is_active=True)
     banner_list = Banner.objects.all()
+    category_list = Category.objects.all()
     return render_to_response("site/home_page.html",
                               {'news_list': news_list,
                                'banner_list': banner_list,
                                'footer_events': footer_events,
                                'menu_list': menu_list,
                                'event_list': event_list,
+                               'category_list': category_list,
                                'post_list': post_list})
 
 
@@ -387,3 +389,25 @@ def handler404(request, exception):
 
 def handler500(request):
     return render(request, 'site/500.html', status=500)
+
+
+def donations(request):
+  menu_list = Menu.objects.filter(parent=None, is_active=True)
+  return render(request, 'site/donations.html', {'menu_list': menu_list})
+
+
+def employment(request):
+  menu_list = Menu.objects.filter(parent=None, is_active=True)
+  return render(request, 'site/employment.html', {'menu_list': menu_list})
+
+
+def financial_information(request):
+  menu_list = Menu.objects.filter(parent=None, is_active=True)
+  event_list = Event.objects.filter(
+      is_active=True).order_by('-start_date')[0:2]
+  footer_events = Event.objects.filter(
+      is_active=True).order_by('-start_date')[0:4]
+  return render(request, 'site/financial_information.html',
+                            {'menu_list': menu_list,
+                             'footer_events': footer_events,
+                             'event_list': event_list})

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Chaitanya Jyothi Welfare Society</title>
     <meta name="description" content="">
     <meta name="author" content="">
@@ -45,13 +45,13 @@
             </hgroup>
             <!-- .site-navigation .main-navigation -->
             <button id="tog-btn"><i class="fa fa-bars"></i></button>
-            <div class ="">
-              <ul id="main-menu" class="sm sm-blue">
+            <div class ="navigation">
+     <ul id="main-menu" class="sm sm-blue">
                 {% for menu in menu_list|dictsort:"lvl" %}
                 <li>
-                  <a href="/{{ menu.slug }}">{{ menu.name }}</a>
+                  <a href="/{{ menu.slug }}" class="{{menu.slug}}">{{ menu.name }}</a>
                   {% if menu.menu_set.all|menu_count %}
-                  <ul>
+                  <ul class="menu--list">
                     {% for sub in menu.menu_set.all|dictsort:"lvl" %}
                     {% if sub.is_active %}
                     <li>
@@ -72,7 +72,7 @@
                   {% endif %}
                 </li>
                 {% endfor %}
-              </ul>
+              </ul> 
             </div>
             <div class="grid_16 mob-nav"></div>
             <div class="clear"></div>
@@ -96,10 +96,9 @@
                 <address class="vcard">
           <p class="org vcard"><a class="url fn org" href="#">Chaitanya Jyothi Welfare Society</a></p>
                   <p class="adr">
-                    <b>Street :</b> -<span class="street-address">26-3-215, Thyagaraya Nagar 4th street,</span><br>
-                    <span class="region"> Vedayapalem, Nellore - 524004</span>
-                    <span class="postal-code"> Andhra Pradesh,</span>
-                    <span class="country-name"> India,</span>
+                    <b>Street :</b> -26-3-215, Thyagaraya Nagar 4th street,
+                    Vedayapalem, Nellore - 524004<br>
+                     Andhra Pradesh, India.
                   </p>
                   <b>Phone :</b><span class="tel"> +91 (861)2344063</span><br />
                   <b>E-mail :</b><span class="email"> hello@cjws.in</span><br />
@@ -220,6 +219,7 @@ $(function(){
   $("#sticky_navigation").addClass("sticky")
 });
 });
+
 </script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>   
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

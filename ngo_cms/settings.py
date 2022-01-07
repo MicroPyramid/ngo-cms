@@ -9,11 +9,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '1$lz*a!q(==v3h&%r7xuv+145du+v7mo#&%rzoertbnw*b@$n4'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', False)
+DEBUG = os.getenv('DEBUG', True)
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = [ 'cjws.in', 'www.cjws.in', '172.18.0.2', '172.21.0.2']
+ALLOWED_HOSTS = [ 'cjws.in', 'www.cjws.in', '172.18.0.2', '172.21.0.2', '*']
 
 LOGIN_URL = "/admin/"
 
@@ -54,10 +54,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cjws',
-        'USER': os.getenv('DB_USER',''),
-        'PASSWORD': os.getenv('DB_PASSWORD',''),
-        'HOST': os.getenv('DB_HOST',''),
-        'PORT': os.getenv('DB_PORT', ''),
+        'USER': os.getenv('DB_USER','postgres'),
+        'PASSWORD': os.getenv('DB_PASSWORD','root'),
+        'HOST': os.getenv('DB_HOST','localhost'),
+        'PORT': os.getenv('DB_PORT', 5432),
     }
 }
 
@@ -76,7 +76,7 @@ USE_TZ = True
 
 AUTH_USER_MODEL = "admin.User"
 
-STORAGE_TYPE = os.getenv('STORAGE_TYPE', 's3-storage')
+STORAGE_TYPE = os.getenv('STORAGE_TYPE', 'normal')
 
 if STORAGE_TYPE == 'normal':
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
